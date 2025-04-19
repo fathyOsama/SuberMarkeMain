@@ -30,7 +30,7 @@ public class ProductController {
 
     @GetMapping("/ViewNewProductAddition")
     public String ViewNewProductAddition(Model themodel){
-
+        System.out.println("test");
         Product product = new Product();
 
         themodel.addAttribute("product",product);
