@@ -1,0 +1,117 @@
+package com.Super_Market.SuberMarket.security;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
+
+import javax.sql.DataSource;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    @Bean
+    public UserDetailsManager userDetailsManager(DataSource dataSource) {
+
+        return new JdbcUserDetailsManager(dataSource);
+    }
+
+    @Bean
+    public BCryptPasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+                .authorizeHttpRequests(configurer ->
+                        configurer
+                                .requestMatchers("/", "/showMyLoginPage", "/register", "/processRegistration",
+                                "/images/**", "/css/**", "/js/**").permitAll()
+                                .anyRequest().authenticated()
+                )
+                .formLogin(form ->
+                        form
+                                .loginPage("/showMyLoginPage")
+                                .loginProcessingUrl("/authenticateTheUser")
+                                .defaultSuccessUrl("/list", true)
+                                .failureUrl("/showMyLoginPage?error=true")
+                                .permitAll()
+                )
+                .logout(logout ->
+                        logout
+                                .logoutSuccessUrl("/showMyLoginPage?logout=true")
+                                .permitAll()
+                );
+
+        return http.build();
+    }
+
+
+}
+
+
+/*@Configuration
+public class LoginClients {
+
+    @Bean
+    public UserDetailsManager userDetailsManager(DataSource dataSource) {
+
+        return new JdbcUserDetailsManager(dataSource);
+    }*/
+
+   /* @Bean
+    public SecurityFilterChain filterChain(@NotNull HttpSecurity http) throws Exception {
+
+        http.authorizeHttpRequests(configurer ->
+                        configurer
+                               // .requestMatchers("/restController/**").permitAll()
+                               .requestMatchers("/restController/**").permitAll()
+                               .requestMatchers("/list/**").permitAll()
+                               .requestMatchers("/images/**").permitAll()
+                                .requestMatchers("/products/**").permitAll()
+                                .requestMatchers("/select/{id}/**").permitAll()
+                                .requestMatchers("/selected/**").permitAll()
+                               // .requestMatchers("/showFormForAdd").hasRole("EMPLOYEE")
+                               // .requestMatchers("/showFormForUpdate").hasRole("EMPLOYEE")
+                                //.requestMatchers("/save").hasRole("EMPLOYEE")
+                                //.anyRequest().authenticated()
+
+
+                )
+                .formLogin(form ->
+                        form
+                                .loginPage("/showMyLoginPage")
+                                .loginProcessingUrl("/authenticateTheUser")
+                                .permitAll()
+                )
+                .logout(logout -> logout.permitAll()
+                );
+
+        return http.build();
+    }*/
+
+    /*@Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/list").hasRole("EMPLOYEE")
+                        .requestMatchers("/images/**").permitAll()
+                        .anyRequest().authenticated()
+                       // .anyRequest().permitAll()
+                )
+                .formLogin(form ->
+                        form
+                                .loginPage("/showMyLoginPage")
+                                .loginProcessingUrl("/authenticateTheUser")
+                                .permitAll()
+                )
+                .csrf(csrf -> csrf.disable());
+        return http.build();
+    }
+}*/
