@@ -1,7 +1,6 @@
 package com.Super_Market.SuberMarket.restcontroller;
 
-import com.Super_Market.SuberMarket.entity.Product;
-import com.Super_Market.SuberMarket.service.ProductService;
+import com.Super_Market.SuberMarket.entity.product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,12 +14,12 @@ import java.util.List;
 
 @Controller
 //@RequestMapping("/products")
-public class ProductController {
+public class productController {
 
-    private final List<Product> selectedProducts = new ArrayList<>();
+    private final List<product> selectedProducts = new ArrayList<>();
 
     @Autowired
-    private ProductService productService;
+    private com.Super_Market.SuberMarket.service.productService productService;
 
     @GetMapping("/list")
     public String showProducts(Model model) {
@@ -28,10 +27,10 @@ public class ProductController {
         return "list-product";
     }
 
-    @GetMapping("/ViewNewProductAddition")
+    @GetMapping("/viewNewProductAddition")
     public String ViewNewProductAddition(Model themodel){
         System.out.println("production");
-        Product product = new Product();
+        product product = new product();
 
         themodel.addAttribute("product",product);
 
@@ -39,7 +38,7 @@ public class ProductController {
     }
 
     @PostMapping("/save")
-    public String saveProduct(@ModelAttribute("product") Product product) {
+    public String saveProduct(@ModelAttribute("product") product product) {
 
         // save the employee
         productService.save(product);
@@ -50,7 +49,7 @@ public class ProductController {
 
     @PostMapping("/select/{id}")
     public String selectProduct(@PathVariable Integer id) {
-        Product product = productService.findById(id);
+        product product = productService.findById(id);
         if (product != null && !selectedProducts.contains(product)) {
             selectedProducts.add(product);
         }

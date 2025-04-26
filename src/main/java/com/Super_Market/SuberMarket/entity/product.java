@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="product")
-public class Product {
+public class product {
 
 	// define fields
 
@@ -14,33 +14,33 @@ public class Product {
 	private int id;
 
 	@Column(name = "Product_image")
-	private String ProductImage;
+	private String productImage;
 
 	@Column(name="Product_name")
-	private String ProductName;
+	private String productName;
 
 	@Column(name="Product_type")
-	private String ProductType;
+	private String productType;
 
 	@Column(name="expiry_data")
-	private String ExpriryData;
+	private String expriryData;
 
 	@Column(name = "Product_price")
-	private double ProductPrice;
+	private double productPrice;
 
 
 	// define constructors
 
-	public Product() {
+	public product() {
 	}
 
-	public Product(int id, String productImage, String productName, String productType, String expriryData, double productPrice) {
+	public product(int id, String productImage, String productName, String productType, String expriryData, double productPrice) {
 		this.id = id;
-		ProductImage = productImage;
-		ProductName = productName;
-		ProductType = productType;
-		ExpriryData = expriryData;
-		ProductPrice = productPrice;
+		this.productImage = productImage;
+		this.productName = productName;
+		this.productType = productType;
+		this.expriryData = expriryData;
+		this.productPrice = productPrice;
 	}
 
 // define getter/setter
@@ -54,43 +54,43 @@ public class Product {
 	}
 
 	public String getProductImage() {
-		return ProductImage;
+		return productImage;
 	}
 
 	public void setProductImage(String productImage) {
-		ProductImage = productImage;
+		this.productImage = productImage;
 	}
 
 	public String getProductName() {
-		return ProductName;
+		return productName;
 	}
 
 	public void setProductName(String productName) {
-		ProductName = productName;
+		this.productName = productName;
 	}
 
 	public String getProductType() {
-		return ProductType;
+		return productType;
 	}
 
 	public void setProductType(String productType) {
-		ProductType = productType;
+		this.productType = productType;
 	}
 
 	public String getExpriryData() {
-		return ExpriryData;
+		return expriryData;
 	}
 
 	public void setExpriryData(String expriryData) {
-		ExpriryData = expriryData;
+		this.expriryData = expriryData;
 	}
 
 	public double getProductPrice() {
-		return ProductPrice;
+		return productPrice;
 	}
 
 	public void setProductPrice(double productPrice) {
-		ProductPrice = productPrice;
+		this.productPrice = productPrice;
 	}
 
 // define tostring
@@ -100,11 +100,11 @@ public class Product {
 	public String toString() {
 		return "Product{" +
 				"id=" + id +
-				", ProductImage='" + ProductImage + '\'' +
-				", ProductName='" + ProductName + '\'' +
-				", ProductType='" + ProductType + '\'' +
-				", ExpriryData='" + ExpriryData + '\'' +
-				", ProductPrice='" + ProductPrice + '\'' +
+				", ProductImage='" + productImage + '\'' +
+				", ProductName='" + productName + '\'' +
+				", ProductType='" + productType + '\'' +
+				", ExpriryData='" + expriryData + '\'' +
+				", ProductPrice='" + productPrice + '\'' +
 				'}';
 	}
 }

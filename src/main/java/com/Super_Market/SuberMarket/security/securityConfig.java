@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class securityConfig {
 
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
@@ -33,6 +33,7 @@ public class SecurityConfig {
                         configurer
                                 .requestMatchers("/", "/showMyLoginPage", "/register", "/processRegistration",
                                 "/images/**", "/css/**", "/js/**").permitAll()
+                                //.requestMatchers("/ViewNewProductAddition").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .formLogin(form ->

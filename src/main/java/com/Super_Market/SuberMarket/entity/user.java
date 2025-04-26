@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 
 @Entity
 @Table(name = "users") // Specify the table name (optional)
-public class User {
+public class user {
 
     @Id  // This annotation marks the field as the primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // Auto-increment
@@ -17,7 +17,7 @@ public class User {
     private String email;
 
     // Default constructor
-    public User() {
+    public user() {
     }
 
     // Getters and setters

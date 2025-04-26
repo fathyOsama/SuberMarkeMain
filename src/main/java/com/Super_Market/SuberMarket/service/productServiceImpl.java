@@ -1,34 +1,33 @@
 package com.Super_Market.SuberMarket.service;
 
-import com.Super_Market.SuberMarket.dao.ProductRepository;
-import com.Super_Market.SuberMarket.entity.Product;
+import com.Super_Market.SuberMarket.entity.product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class productServiceImpl implements productService {
 
-    private ProductRepository productRepository;
+    private com.Super_Market.SuberMarket.dao.productRepository productRepository;
 
     @Autowired
-    public ProductServiceImpl(ProductRepository theProductRepository){
+    public productServiceImpl(com.Super_Market.SuberMarket.dao.productRepository theProductRepository){
         productRepository = theProductRepository;
     }
 
     @Override
-    public List<Product> findAll() {
+    public List<product> findAll() {
         return productRepository.findAll();
     }
 
     @Override
-    public Product findById(int id) {
+    public product findById(int id) {
         return productRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Product save(Product theProduct) {
+    public product save(product theProduct) {
         return productRepository.save(theProduct);
     }
 

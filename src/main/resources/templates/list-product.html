@@ -14,7 +14,7 @@
     <h3>Product</h3>
     <hr>
 
-    <a th:href="@{/ViewNewProductAddition}"
+    <a th:href="@{viewNewProductAddition}"
        class="btn btn-danger btn-sm mb-3">
         Add a new product
     </a>
@@ -24,12 +24,12 @@
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
         <tr>
-            <th>Product Image </th>
-            <th>Product Name</th>
-            <th>Product Type</th>
+            <th>product Image </th>
+            <th>product Name</th>
+            <th>product Type</th>
             <th>expiry Data</th>
-            <th>Product Price</th>
-            <th>Buying</th>
+            <th>product Price</th>
+            <th>buying</th>
         </tr>
         </thead>
 
@@ -37,13 +37,13 @@
         <tr th:each="tempProduct : ${products}">
 
             <td>
-                <img th:src="@{${tempProduct.ProductImage}}" alt="Product Image" style="width:150px; height:100px;" />
+                <img th:src="@{${tempProduct.productImage}}" alt="Product Image" style="width:150px; height:100px;" />
             </td>
 
-            <td th:text="${tempProduct.ProductName}" />
-            <td th:text="${tempProduct.ProductType}" />
-            <td th:text="${tempProduct.ExpriryData}" />
-            <td th:text="${tempProduct.ProductPrice}" />
+            <td th:text="${tempProduct.productName}" />
+            <td th:text="${tempProduct.productType}" />
+            <td th:text="${tempProduct.expriryData}" />
+            <td th:text="${tempProduct.productPrice}" />
 
 
             <td>

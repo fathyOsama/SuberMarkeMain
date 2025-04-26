@@ -1,6 +1,6 @@
 package com.Super_Market.SuberMarket.restcontroller;
 
-import com.Super_Market.SuberMarket.entity.User;
+import com.Super_Market.SuberMarket.entity.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class AuthController {
+public class authController {
 
     @Autowired
     private BCryptPasswordEncoder encoder;
@@ -28,12 +28,12 @@ public class AuthController {
     @GetMapping("/register")
     public String showRegistrationPage(Model model) {
         // Create model attribute to bind form data
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new user());
         return "registration-form";
     }
 
     @PostMapping("/processRegistration")
-    public String processRegistration(@ModelAttribute("user") User user) {
+    public String processRegistration(@ModelAttribute("user") user user) {
 
         if (userDetailsManager.userExists(user.getUsername())) {
             return "redirect:/register?error=username_taken";

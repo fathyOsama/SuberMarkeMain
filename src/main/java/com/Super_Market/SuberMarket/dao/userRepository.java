@@ -1,11 +1,11 @@
 package com.Super_Market.SuberMarket.dao;
 
-import com.Super_Market.SuberMarket.entity.User;
+import com.Super_Market.SuberMarket.entity.user;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface userRepository extends JpaRepository<user, Integer> {
     // Add any custom query methods if needed
-    User findByUsername(String username);
+    user findByUsername(String username);
 }
