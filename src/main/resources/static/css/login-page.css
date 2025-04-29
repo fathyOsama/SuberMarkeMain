@@ -1,0 +1,49 @@
+/* Full-page centering */
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    width: 150%;
+    max-width: 400px;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card-header {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.input-group input {
+    padding: 10px;
+}
+
+.btn-success {
+    font-weight: bold;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.register-link a {
+    text-decoration: none;
+    color: #0d6efd;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+

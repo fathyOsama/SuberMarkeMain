@@ -5,60 +5,34 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <title>Save a new product</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
-    <title>Save a new product</title>
+    <link rel="stylesheet" href="/css/product-from.css">
 </head>
 
 <body>
-
-    <div class="container">
-
-        <h3>save a new product</h3>
-        <hr>
-
-        <p class="h4 mb-4">Save Product</p>
-
-        <form action="#" th:action="@{/save}"
-                         th:object="${product}" method="POST">
-
-            <!-- Add hidden form field to handle update -->
-            <input type="hidden" th:field="*{id}" />
-
-            <input type="text" th:field="*{ProductImage}"
-                   class="form-control mb-4 w-25" placeholder="Product Image">
-
-            <input type="text" th:field="*{ProductName}"
-                   class="form-control mb-4 w-25" placeholder="Product Name">
-
-            <input type="text" th:field="*{ProductType}"
-                   class="form-control mb-4 w-25" placeholder="Product Type">
-
-            <input type="text" th:field="*{ExpriryData}"
-                   class="form-control mb-4 w-25" placeholder="Expriry Data">
-
-            <input type="text" th:field="*{ProductPrice}"
-                   class="form-control mb-4 w-25" placeholder="Product Price">
-
-            <button type="submit" class="btn btn-info col-2">Save</button>
-
-        </form>
-
-        <hr>
-        <a th:href="@{/list}">Back to Employees List</a>
-
+    <div class="center-wrapper">
+        <div class="form-box">
+            <h3 class="text-center mb-3"><i>Save a New Product</i></h3>
+            <hr>
+            <form action="#" th:action="@{/save}" th:object="${product}" method="POST">
+                <input type="hidden" th:field="*{id}" />
+                <input type="text" th:field="*{ProductImage}" class="form-control mb-3" placeholder="Product Image (http://localhost:8080/images/)">
+                <input type="text" th:field="*{ProductName}" class="form-control mb-3" placeholder="Product Name">
+                <input type="text" th:field="*{ProductType}" class="form-control mb-3" placeholder="Product Type">
+                <input type="text" th:field="*{ExpriryData}" class="form-control mb-3" placeholder="Expiry Date">
+                <input type="text" th:field="*{ProductPrice}" class="form-control mb-3" placeholder="Product Price">
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-info">Save</button>
+                </div>
+            </form>
+            <hr>
+            <div class="text-center">
+                <a th:href="@{/list}">Back to Product List</a>
+            </div>
+        </div>
     </div>
-
-
 </body>
 
 </html>
-
-
-
-
-
-
-

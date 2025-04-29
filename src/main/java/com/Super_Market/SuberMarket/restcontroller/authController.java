@@ -22,6 +22,7 @@ public class authController {
 
     @GetMapping("/showMyLoginPage")
     public String showLoginPage() {
+
         return "login-page";
     }
 
