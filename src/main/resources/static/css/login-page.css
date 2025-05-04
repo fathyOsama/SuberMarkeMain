@@ -1,23 +1,40 @@
 /* Full-page centering */
 body, html {
-    height: 100%;
+    height: 100vh;
     margin: 0;
     padding: 0;
-    background-color: #f0f2f5;
+    background-image: url('/images/backgroundSuberMarket.jpg');
+     background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.container {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+
+h2 {
+         color: #ffc107;
+         font-family: unset;
+    }
+
 .login-box {
-    width: 150%;
-    max-width: 400px;
+    width: 110%;
+    max-width: 315px;
 }
 
 .card {
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow:0 4px 8px #ffc107
 }
 
 .card-header {
@@ -30,7 +47,21 @@ body, html {
 }
 
 .btn-success {
-    font-weight: bold;
+        font-weight: bold;
+                --bs-btn-color: #000;
+                --bs-btn-bg: #ffc107;
+                --bs-btn-border-color: #000;
+                --bs-btn-hover-color: #fff;
+                --bs-btn-hover-bg: #ffc107;
+                --bs-btn-hover-border-color: #ffc107;
+                --bs-btn-focus-shadow-rgb: 60, 153, 110;
+                --bs-btn-active-color: #fff;
+                --bs-btn-active-bg: #ffc107;
+                --bs-btn-active-border-color: #ffc107;
+                --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+                --bs-btn-disabled-color: #fff;
+                --bs-btn-disabled-bg: #ffc107;
+                --bs-btn-disabled-border-color: #ffc107;
 }
 
 .register-link {
@@ -40,10 +71,44 @@ body, html {
 
 .register-link a {
     text-decoration: none;
-    color: #0d6efd;
+    color: #ffc107;
 }
 
 .register-link a:hover {
     text-decoration: underline;
 }
 
+    .form-group {
+        color: #d54d74;
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-weight: 500;
+        color: #901515;
+        margin-bottom: 5px;
+    }
+
+    input.form-control {
+        border-radius: 12px;
+        padding: 10px;
+        border: 1px solid #ced4da;
+        font-size: 13px;
+        width: 100%;
+        transition: border-color 0.2s ease-in-out;
+    }
+
+    input.form-control:focus {
+        border-color: #80bdff;
+        outline: none;
+        box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25);
+    }
+
+    .border-info {
+        --bs-border-opacity: 1;
+        border-color: #ffc107 !important;
+    }
+
+    .bg-info {
+        --bs-bg-opacity: 1;
+        background-color: #f5b802 !important;
