@@ -1,6 +1,10 @@
 package com.Super_Market.SuberMarket.entity;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.userdetails.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="product")
@@ -34,8 +38,7 @@ public class product {
 	public product() {
 	}
 
-	public product(int id, String productImage, String productName, String productType, String expriryData, double productPrice) {
-		this.id = id;
+	public product( String productImage, String productName, String productType, String expriryData, double productPrice) {
 		this.productImage = productImage;
 		this.productName = productName;
 		this.productType = productType;
@@ -44,6 +47,8 @@ public class product {
 	}
 
 // define getter/setter
+
+
 
 	public int getId() {
 		return id;
@@ -92,6 +97,8 @@ public class product {
 	public void setProductPrice(double productPrice) {
 		this.productPrice = productPrice;
 	}
+
+
 
 // define tostring
 

@@ -4,17 +4,21 @@ package com.Super_Market.SuberMarket.entity;
 import jakarta.persistence.*;
 import jakarta.persistence.Id;
 
+import java.util.List;
+
 @Entity
-@Table(name = "users") // Specify the table name (optional)
+@Table(name = "users")
 public class user {
 
-    @Id  // This annotation marks the field as the primary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Auto-increment
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String username;
     private String password;
     private String email;
+
+
 
     // Default constructor
     public user() {
@@ -52,4 +56,5 @@ public class user {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }
