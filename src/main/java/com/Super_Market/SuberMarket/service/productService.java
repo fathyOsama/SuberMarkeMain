@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface productService {
 
+    List<product> findByIdIn(List<Integer> ids);
+
     List<product> findAll();
 
     product findById(int theId);

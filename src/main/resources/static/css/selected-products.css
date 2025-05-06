@@ -62,7 +62,11 @@
          --bs-btn-disabled-border-color: #ffc107;
    }
 
+<<<<<<< HEAD
    h3 {
+=======
+   h3,h2 {
+>>>>>>> development
         text-align: center;
         font-weight: 700;
         align-content: center;
