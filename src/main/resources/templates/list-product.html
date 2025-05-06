@@ -11,7 +11,7 @@
 
 <div class="container">
 
-    <i><h2>>Dairy Products</h2></i>
+    <i><h2>Dairy Products</h2></i>
     <hr>
 
 
@@ -60,7 +60,7 @@
         </tbody>
     </table>
 
-    <i><h2>Products</h2></i>
+    <i><h2>Oil Products</h2></i>
 
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
@@ -75,7 +75,7 @@
         </thead>
 
         <tbody>
-            <tr th:each="tempProduct : ${products}">
+            <tr th:each="tempProduct : ${oilProducts}">
 
                 <td>
                     <img th:src="@{${tempProduct.ProductImage}}" alt="Product Image" style="width:150px; height:100px;" />
@@ -93,42 +93,6 @@
                     </form>
                 </td>
             </tr>
-        </tbody>
-    </table>
-
-    <i><h2>Products</h2></i>
-
-    <table class="table table-bordered table-striped">
-        <thead class="table-dark">
-        <tr>
-            <th>Product Image</th>
-            <th>Product Name</th>
-            <th>Product Type</th>
-            <th>expiry Data</th>
-            <th>Product Price</th>
-            <th>Buying</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr th:each="tempProduct : ${oilProducts}">
-
-            <td>
-                <img th:src="@{${tempProduct.ProductImage}}" alt="Product Image" style="width:150px; height:100px;" />
-            </td>
-
-            <td th:text="${tempProduct.productName}" />
-            <td th:text="${tempProduct.ProductType}" />
-            <td th:text="${tempProduct.ExpriryData}" />
-            <td th:text="${tempProduct.ProductPrice}" />
-
-
-            <td>
-                <form th:action="@{/select/{id}(id=${tempProduct.id})}" method="post">
-                    <button type="submit" class="btn btn-outline-primary mt-2">Add to Cart</button>
-                </form>
-            </td>
-        </tr>
         </tbody>
     </table>
 

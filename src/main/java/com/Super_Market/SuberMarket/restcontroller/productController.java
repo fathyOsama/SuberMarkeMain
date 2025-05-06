@@ -41,7 +41,7 @@ public class productController {
     }
 
     @GetMapping("/viewNewProductAddition")
-    public String ViewNewProductAddition(Model themodel){
+    public String ViewNewProductAddition(Model themodel) {
         System.out.println("production");
         product product = new product();
 
@@ -100,13 +100,16 @@ public class productController {
         return "checkout";
     }
 
-    @PostMapping("/place-order")
-    public String placeOrder() {
-
+    @PostMapping("/clear-selection")
+    public String clearSelection() {
+        // Clear the selected products list
         selectedProducts.clear();
 
-        return "list-product";
+        // Redirect back to the selected products page
+        return "redirect:/selected";
     }
+
+
 }
 
 
