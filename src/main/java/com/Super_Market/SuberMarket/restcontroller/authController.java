@@ -52,13 +52,5 @@ public class authController {
     }
 
 
-    /*@PostMapping("/processRegistration")
-    public String processRegistration(@ModelAttribute("user") User user) {
-        // In a real application, you would save the user to database here
-        // userService.save(user);
-
-        return "redirect:/showMyLoginPage?registration=success";
-    }*/
-
 
 }

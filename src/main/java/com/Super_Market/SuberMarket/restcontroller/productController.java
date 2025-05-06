@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-//@RequestMapping("/products")
 public class productController {
 
     private final List<product> selectedProducts = new ArrayList<>();
@@ -23,7 +22,21 @@ public class productController {
 
     @GetMapping("/list")
     public String showProducts(Model model) {
-        model.addAttribute("products", productService.findAll());
+
+        List<product> allProducts = productService.findAll();
+
+        List<product> dairyProducts = allProducts.stream()
+                .filter(p -> "Dairy products".equalsIgnoreCase(p.getProductType()))
+                .toList();
+
+        List<product> oilProducts = allProducts.stream()
+                .filter(p -> "Oil products".equalsIgnoreCase(p.getProductType()))
+                .toList();
+
+        model.addAttribute("dairyProducts", dairyProducts);
+        model.addAttribute("oilProducts", oilProducts);
+
+        //model.addAttribute("products", productService.findAll());
         return "list-product";
     }
 
@@ -32,7 +45,7 @@ public class productController {
         System.out.println("production");
         product product = new product();
 
-        themodel.addAttribute("product",product);
+        themodel.addAttribute("product", product);
 
         return "product-from";
     }
@@ -40,10 +53,8 @@ public class productController {
     @PostMapping("/save")
     public String saveProduct(@ModelAttribute("product") product product) {
 
-        // save the employee
         productService.save(product);
 
-        // use a redirect to prevent duplicate submissions
         return "redirect:/list";
     }
 
@@ -58,8 +69,43 @@ public class productController {
 
     @GetMapping("/selected")
     public String showSelectedProducts(Model model) {
+        double totalPrice = calculateTotalPrice(selectedProducts);
+
         model.addAttribute("products", selectedProducts);
+
+        model.addAttribute("totalPrice", totalPrice);
+
         return "selected-products";
+    }
+
+    private double calculateTotalPrice(List<product> products) {
+        return products.stream()
+                .mapToDouble(product::getProductPrice)
+                .sum();
+    }
+
+    @GetMapping("/checkout")
+    public String checkout(Model model) {
+
+        if (selectedProducts.isEmpty()) {
+            return "redirect:/list";
+        }
+
+        double totalPrice = calculateTotalPrice(selectedProducts);
+
+        model.addAttribute("products", selectedProducts);
+
+        model.addAttribute("totalPrice", totalPrice);
+
+        return "checkout";
+    }
+
+    @PostMapping("/place-order")
+    public String placeOrder() {
+
+        selectedProducts.clear();
+
+        return "list-product";
     }
 }
 
