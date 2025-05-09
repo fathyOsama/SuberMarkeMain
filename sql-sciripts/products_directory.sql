@@ -3,6 +3,7 @@ USE `products_directory`;
 
 DROP TABLE IF EXISTS `authorities`;
 DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `product`;
 
 --
 -- Table structure for table `users`
@@ -27,8 +28,6 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` 
 VALUES 
-('FathiOsama','{bcrypt}$2y$10$CRV/r/Hx8NCPL15VNUMAEu3dIxuB/.xQTmaGK613Uza7Kia814OUa',1),
-('ShehabOsama','{bcrypt}$2y$10$CRV/r/Hx8NCPL15VNUMAEu3dIxuB/.xQTmaGK613Uza7Kia814OUa',1),
 ('MayarOsama','{bcrypt}$2y$10$CRV/r/Hx8NCPL15VNUMAEu3dIxuB/.xQTmaGK613Uza7Kia814OUa',1);
 
 
@@ -49,9 +48,6 @@ CREATE TABLE `authorities` (
 
 INSERT INTO `authorities` 
 VALUES 
-('FathiOsama','ROLE_EMPLOYEE'),
-('ShehabOsama','ROLE_EMPLOYEE'),
-('ShehabOsama','ROLE_MANAGER'),
 ('MayarOsama','ROLE_EMPLOYEE'),
 ('MayarOsama','ROLE_MANAGER'),
 ('MayarOsama','ROLE_ADMIN');
@@ -61,7 +57,6 @@ VALUES
 -- Table structure for table `product`
 --
 
-DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `id` int NOT NULL AUTO_INCREMENT,
   `Product_image` varchar(100) Default NULL,
@@ -76,14 +71,14 @@ CREATE TABLE `product` (
 -- Data for table `product`
 --
 
-INSERT INTO `product` VALUES 
-	(1,'http://localhost:8080/images/Milk.jpeg','Milk','Dairy products','12/10/2024','80'),
-	(2,'http://localhost:8080/images/Cheese.jpeg','Cheese','Dairy products','5/8/2024','45'),
-	(3,'http://localhost:8080/images/juice.jpeg','juice','Dairy products','3/5/2024','75'),
-	(5,'http://localhost:8080/images/Milk.jpeg','Milk','Dairy products','7/6/2024','98'),
-	(6,'http://localhost:8080/images/Cheese.jpeg','Cheese','Dairy products','7/6/2024','98'),
-    (7,'http://localhost:8080/images/Milk.jpeg','Milk','Dairy products','7/6/2024','98'),
-    (8,'http://localhost:8080/images/juice.jpeg','juice','Aairy products','7/6/2024','98'),
-    (9,'http://localhost:8080/images/Cheese.jpeg','Cheese','Dairy products','7/6/2024','98'),
-	(10,'http://localhost:8080/images/Milk.jpeg','Milk','Dairy products','7/6/2024','98'),
-	(11,'http://localhost:8080/images/juice.jpeg','juice','Dairy products','5/8/2024','23');
+INSERT INTO `product` (product_image, product_name, product_type, expiry_data, product_price) VALUES 
+	('http://localhost:8080/images/Milk.jpeg','Milk','Dairy products','12/10/2024','80'),
+	('http://localhost:8080/images/Cheese.jpeg','Cheese','Dairy products','5/8/2024','45'),
+	('http://localhost:8080/images/juice.jpeg','juice','Oil products','3/5/2024','75'),
+	('http://localhost:8080/images/Milk.jpeg','Milk','Dairy products','7/6/2024','98'),
+	('http://localhost:8080/images/Cheese.jpeg','Cheese','Dairy products','7/6/2024','98'),
+    ('http://localhost:8080/images/Milk.jpeg','Milk','Dairy products','7/6/2024','98'),
+    ('http://localhost:8080/images/juice.jpeg','juice','Oil products','7/6/2024','98'),
+    ('http://localhost:8080/images/Cheese.jpeg','Cheese','Dairy products','7/6/2024','98'),
+	('http://localhost:8080/images/Milk.jpeg','Milk','Oil products','7/6/2024','98'),
+	('http://localhost:8080/images/juice.jpeg','juice','Dairy products','5/8/2024','23');
