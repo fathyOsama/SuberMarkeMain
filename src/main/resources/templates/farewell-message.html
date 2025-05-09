@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Goodbye Dear</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/farewell-message.css">
+</head>
+<body>
+
+<div class="farewell-container">
+    <h1>GoodBye Dear,</h1>
+    <h2>Let's see you again</h2>
+
+    <form th:action="@{/clear-user-data}" method="post">
+        <button type="submit" class="back-button">Back to Login Page</button>
+    </form>
+
+
+</div>
+
+</body>
+</html>
