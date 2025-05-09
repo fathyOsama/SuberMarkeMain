@@ -1,6 +1,7 @@
 package com.Super_Market.SuberMarket.restcontroller;
 
 import com.Super_Market.SuberMarket.entity.product;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -84,6 +85,15 @@ public class productController {
                 .sum();
     }
 
+    @PostMapping("/clear-selection")
+    public String clearSelection() {
+        // Clear the selected products list
+        selectedProducts.clear();
+
+        // Redirect back to the selected products page
+        return "redirect:/selected";
+    }
+
     @GetMapping("/checkout")
     public String checkout(Model model) {
 
@@ -100,13 +110,20 @@ public class productController {
         return "checkout";
     }
 
-    @PostMapping("/clear-selection")
-    public String clearSelection() {
-        // Clear the selected products list
+
+    @GetMapping("/farewell-message-to-the-client")
+    public String farewellMessageToTheClient(){
+        return "farewell-message";
+    }
+
+    @PostMapping("/clear-user-data")
+    public String clearUserDataAndRedirect(HttpSession session) {
+
         selectedProducts.clear();
 
-        // Redirect back to the selected products page
-        return "redirect:/selected";
+        session.removeAttribute("selectedProducts");
+
+        return "redirect:/showMyLoginPage";
     }
 
 
