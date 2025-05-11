@@ -34,8 +34,13 @@ public class productController {
                 .filter(p -> "Oil products".equalsIgnoreCase(p.getProductType()))
                 .toList();
 
+        List<product> meatProducts = allProducts.stream()
+                .filter(p -> "Meat products".equalsIgnoreCase(p.getProductType()))
+                .toList();
+
         model.addAttribute("dairyProducts", dairyProducts);
         model.addAttribute("oilProducts", oilProducts);
+        model.addAttribute("meatProducts", meatProducts);
 
         //model.addAttribute("products", productService.findAll());
         return "list-product";

@@ -10,12 +10,12 @@
 <body>
 
 <div class="container">
-    <div class="row mt-3">
-        <div class="col">
-            <h2>Your Selected Products</h2>
-            <hr>
+
+
+    <section style="padding: 20px 0;">
+        <div style="text-align: center;">
+            <i><h2>Your Selected Products</h2></i>
         </div>
-    </div>
 
     <!-- Show message if no products are selected -->
     <div th:if="${#lists.isEmpty(products)}" class="row">
@@ -68,6 +68,7 @@
             </table>
         </div>
     </div>
+    </section>
 
     <!-- Action buttons -->
     <div class="row mt-4">
