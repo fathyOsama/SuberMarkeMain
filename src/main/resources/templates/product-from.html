@@ -12,27 +12,35 @@
 </head>
 
 <body>
-    <div class="center-wrapper">
-        <div class="form-box">
-            <h3 class="text-center mb-3"><i>Save a New Product</i></h3>
-            <hr>
-            <form action="#" th:action="@{/save}" th:object="${product}" method="POST">
-                <input type="hidden" th:field="*{id}" />
-                <input type="text" th:field="*{ProductImage}" class="form-control mb-3" placeholder="Product Image (http://localhost:8080/images/)">
-                <input type="text" th:field="*{ProductName}" class="form-control mb-3" placeholder="Product Name">
-                <input type="text" th:field="*{ProductType}" class="form-control mb-3" placeholder="Product Type">
-                <input type="text" th:field="*{ExpriryData}" class="form-control mb-3" placeholder="Expiry Date">
-                <input type="text" th:field="*{ProductPrice}" class="form-control mb-3" placeholder="Product Price">
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-info">Save</button>
-                </div>
-            </form>
-            <hr>
-            <div class="text-center">
-                <a th:href="@{/list}">Back to Product List</a>
+<div class="center-wrapper">
+    <div class="form-box">
+        <h3 class="text-center mb-3"><i>Save a New Product</i></h3>
+        <hr>
+        <form action="#" th:action="@{/save}" th:object="${product}" method="POST">
+            <input type="hidden" th:field="*{id}" />
+            <input type="text" th:field="*{productImage}" class="form-control mb-3" placeholder="Product Image (http://localhost:8080/images/)">
+            <input type="text" th:field="*{productName}" class="form-control mb-3" placeholder="Product Name">
+
+            <!-- Dropdown select for product type instead of text input -->
+            <select th:field="*{productType}" class="form-select mb-3" aria-label="Product Type">
+                <option value="" selected disabled>Select Product Type</option>
+                <option value="Dairy products">Dairy products</option>
+                <option value="Oil products">Oil products</option>
+                <option value="Meat products">Meat products</option>
+            </select>
+
+            <input type="text" th:field="*{expriryData}" class="form-control mb-3" placeholder="Expiry Date">
+            <input type="text" th:field="*{productPrice}" class="form-control mb-3" placeholder="Product Price">
+            <div class="d-grid">
+                <button type="submit" class="btn btn-info">Save</button>
             </div>
+        </form>
+        <hr>
+        <div class="text-center">
+            <a th:href="@{/list}">Back to Product List</a>
         </div>
     </div>
+</div>
 </body>
 
 </html>
