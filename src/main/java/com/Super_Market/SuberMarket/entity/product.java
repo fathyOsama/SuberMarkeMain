@@ -1,5 +1,6 @@
 package com.Super_Market.SuberMarket.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.springframework.security.core.userdetails.User;
 
@@ -32,8 +33,13 @@ public class product {
 	@Column(name = "Product_price")
 	private double productPrice;
 
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<productImage> images;
+
+
 
 	// define constructors
+
 
 	public product() {
 	}
@@ -96,6 +102,14 @@ public class product {
 
 	public void setProductPrice(double productPrice) {
 		this.productPrice = productPrice;
+	}
+
+	public List<com.Super_Market.SuberMarket.entity.productImage> getImages() {
+		return images;
+	}
+
+	public void setImages(List<com.Super_Market.SuberMarket.entity.productImage> images) {
+		this.images = images;
 	}
 
 
