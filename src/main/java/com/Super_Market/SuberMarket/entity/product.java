@@ -33,7 +33,7 @@ public class product {
 	@Column(name = "Product_price")
 	private double productPrice;
 
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<productImage> images;
 
 
