@@ -18,7 +18,12 @@
         <hr>
         <form action="#" th:action="@{/save}" th:object="${product}" method="POST">
             <input type="hidden" th:field="*{id}" />
-            <input type="text" th:field="*{productImage}" class="form-control mb-3" placeholder="Product Image (http://localhost:8080/images/)">
+
+            <h5>Product Images</h5>
+            <input type="text" name="imageUrls" class="form-control mb-2" placeholder="Image URL 1 (e.g., /images/img1.jpg)" />
+            <input type="text" name="imageUrls" class="form-control mb-2" placeholder="Image URL 2 (optional)" />
+            <input type="text" name="imageUrls" class="form-control mb-2" placeholder="Image URL 3 (optional)" />
+
             <input type="text" th:field="*{productName}" class="form-control mb-3" placeholder="Product Name">
 
             <!-- Dropdown select for product type instead of text input -->
