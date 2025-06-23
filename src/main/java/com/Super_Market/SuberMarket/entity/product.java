@@ -24,8 +24,9 @@ public class product {
 	@Column(name="Product_name")
 	private String productName;
 
-	@Column(name="Product_type")
-	private String productType;
+	@ManyToOne
+	@JoinColumn(name = "product_type_id")
+	private productType productType;
 
 	@Column(name="expiry_data")
 	private String expriryData;
@@ -44,7 +45,7 @@ public class product {
 	public product() {
 	}
 
-	public product( String productImage, String productName, String productType, String expriryData, double productPrice) {
+	public product( String productImage, String productName, productType  productType, String expriryData, double productPrice) {
 		this.productImage = productImage;
 		this.productName = productName;
 		this.productType = productType;
@@ -80,11 +81,11 @@ public class product {
 		this.productName = productName;
 	}
 
-	public String getProductType() {
+	public productType getProductType() {
 		return productType;
 	}
 
-	public void setProductType(String productType) {
+	public void setProductType(productType productType) {
 		this.productType = productType;
 	}
 
@@ -128,6 +129,7 @@ public class product {
 				", ProductPrice='" + productPrice + '\'' +
 				'}';
 	}
+
 }
 
 

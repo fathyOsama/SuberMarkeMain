@@ -40,7 +40,8 @@ public class securityConfig {
                         form
                                 .loginPage("/showMyLoginPage")
                                 .loginProcessingUrl("/authenticateTheUser")
-                                .defaultSuccessUrl("/list", true)
+                                .defaultSuccessUrl("/productSelection", true)
+                                //.defaultSuccessUrl("/list", true)
                                 .failureUrl("/showMyLoginPage?error=true")
                                 .permitAll()
                 )
@@ -56,63 +57,3 @@ public class securityConfig {
 
 }
 
-
-/*@Configuration
-public class LoginClients {
-
-    @Bean
-    public UserDetailsManager userDetailsManager(DataSource dataSource) {
-
-        return new JdbcUserDetailsManager(dataSource);
-    }*/
-
-   /* @Bean
-    public SecurityFilterChain filterChain(@NotNull HttpSecurity http) throws Exception {
-
-        http.authorizeHttpRequests(configurer ->
-                        configurer
-                               // .requestMatchers("/restController/**").permitAll()
-                               .requestMatchers("/restController/**").permitAll()
-                               .requestMatchers("/list/**").permitAll()
-                               .requestMatchers("/images/**").permitAll()
-                                .requestMatchers("/products/**").permitAll()
-                                .requestMatchers("/select/{id}/**").permitAll()
-                                .requestMatchers("/selected/**").permitAll()
-                               // .requestMatchers("/showFormForAdd").hasRole("EMPLOYEE")
-                               // .requestMatchers("/showFormForUpdate").hasRole("EMPLOYEE")
-                                //.requestMatchers("/save").hasRole("EMPLOYEE")
-                                //.anyRequest().authenticated()
-
-
-                )
-                .formLogin(form ->
-                        form
-                                .loginPage("/showMyLoginPage")
-                                .loginProcessingUrl("/authenticateTheUser")
-                                .permitAll()
-                )
-                .logout(logout -> logout.permitAll()
-                );
-
-        return http.build();
-    }*/
-
-    /*@Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/list").hasRole("EMPLOYEE")
-                        .requestMatchers("/images/**").permitAll()
-                        .anyRequest().authenticated()
-                       // .anyRequest().permitAll()
-                )
-                .formLogin(form ->
-                        form
-                                .loginPage("/showMyLoginPage")
-                                .loginProcessingUrl("/authenticateTheUser")
-                                .permitAll()
-                )
-                .csrf(csrf -> csrf.disable());
-        return http.build();
-    }
-}*/

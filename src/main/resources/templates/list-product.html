@@ -54,12 +54,18 @@
 
                     <div class="card-body d-flex flex-column">
                         <h5 class="product-title" th:text="${tempProduct.productName}">Product Name</h5>
-                        <p class="product-type" th:text="${tempProduct.ProductType}">Product Type</p>
+                        <p class="product-type">
+                            <i class="fas fa-cheese"></i>
+                            <span th:text="${tempProduct.productType.name}">Product Type</span>
+                        </p>
+
                         <p class="product-expiry">
                             <i class="fas fa-calendar-alt"></i>
                             <span th:text="${tempProduct.ExpriryData}">Expiry Date</span>
                         </p>
+
                         <div class="product-price" th:text="${#numbers.formatCurrency(tempProduct.ProductPrice)}">$0.00</div>
+
                         <div class="mt-auto">
                             <form th:action="@{/select/{id}(id=${tempProduct.id})}" method="post">
                                 <button type="submit" class="add-to-cart-btn">
@@ -67,7 +73,9 @@
                                 </button>
                             </form>
                         </div>
+
                     </div>
+
                 </div>
             </div>
         </div>
@@ -103,12 +111,19 @@
 
                     <div class="card-body d-flex flex-column">
                         <h5 class="product-title" th:text="${tempProduct.productName}">Product Name</h5>
-                        <p class="product-type" th:text="${tempProduct.ProductType}">Product Type</p>
+
+                        <p class="product-type">
+                            <i class="fas fa-tint"></i>
+                            <span th:text="${tempProduct.productType.name}">Product Type</span>
+                        </p>
+
                         <p class="product-expiry">
                             <i class="fas fa-calendar-alt"></i>
                             <span th:text="${tempProduct.ExpriryData}">Expiry Date</span>
                         </p>
+
                         <div class="product-price" th:text="${tempProduct.ProductPrice}">$0.00</div>
+
                         <div class="mt-auto">
                             <form th:action="@{/select/{id}(id=${tempProduct.id})}" method="post">
                                 <button type="submit" class="add-to-cart-btn">
@@ -116,6 +131,7 @@
                                 </button>
                             </form>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -152,12 +168,19 @@
 
                     <div class="card-body d-flex flex-column">
                         <h5 class="product-title" th:text="${tempProduct.productName}">Product Name</h5>
-                        <p class="product-type" th:text="${tempProduct.ProductType}">Product Type</p>
+
+                        <p class="product-type">
+                            <i class="fas fa-drumstick-bite"></i>
+                            <span th:text="${tempProduct.productType.name}">Product Type</span>
+                        </p>
+
                         <p class="product-expiry">
                             <i class="fas fa-calendar-alt"></i>
                             <span th:text="${tempProduct.ExpriryData}">Expiry Date</span>
                         </p>
+
                         <div class="product-price" th:text="${tempProduct.ProductPrice}">$0.00</div>
+
                         <div class="mt-auto">
                             <form th:action="@{/select/{id}(id=${tempProduct.id})}" method="post">
                                 <button type="submit" class="add-to-cart-btn">
@@ -165,6 +188,7 @@
                                 </button>
                             </form>
                         </div>
+
                     </div>
                 </div>
             </div>

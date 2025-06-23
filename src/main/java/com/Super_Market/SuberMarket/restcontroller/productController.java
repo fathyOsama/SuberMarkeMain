@@ -21,21 +21,26 @@ public class productController {
     @Autowired
     private com.Super_Market.SuberMarket.service.productService productService;
 
+    @GetMapping("/productSelection")
+    public String productSelection() {
+        return "productSelection";
+    }
+
     @GetMapping("/list")
     public String showProducts(Model model) {
 
         List<product> allProducts = productService.findAll();
 
         List<product> dairyProducts = allProducts.stream()
-                .filter(p -> "Dairy products".equalsIgnoreCase(p.getProductType()))
+                .filter(p -> "Dairy products".equalsIgnoreCase(p.getProductType().getName()))
                 .toList();
 
         List<product> oilProducts = allProducts.stream()
-                .filter(p -> "Oil products".equalsIgnoreCase(p.getProductType()))
+                .filter(p -> "Oil products".equalsIgnoreCase(p.getProductType().getName()))
                 .toList();
 
         List<product> meatProducts = allProducts.stream()
-                .filter(p -> "Meat products".equalsIgnoreCase(p.getProductType()))
+                .filter(p -> "Meat products".equalsIgnoreCase(p.getProductType().getName()))
                 .toList();
 
         model.addAttribute("dairyProducts", dairyProducts);
@@ -44,6 +49,48 @@ public class productController {
 
         //model.addAttribute("products", productService.findAll());
         return "list-product";
+    }
+
+    @GetMapping("/dairy_Products")
+    public String dairy_Products(Model model) {
+
+        List<product> allProducts = productService.findAll();
+
+        List<product> dairyProducts = allProducts.stream()
+                .filter(p -> "Dairy products".equalsIgnoreCase(p.getProductType().getName()))
+                .toList();
+
+        model.addAttribute("dairyProducts", dairyProducts);
+
+        return "dairy_Products";
+    }
+
+    @GetMapping("/oil_Products")
+    public String oil_Products(Model model) {
+
+        List<product> allProducts = productService.findAll();
+
+        List<product> oilProducts = allProducts.stream()
+                .filter(p -> "Oil products".equalsIgnoreCase(p.getProductType().getName()))
+                .toList();
+
+        model.addAttribute("oilProducts", oilProducts);
+
+        return "oil_Products";
+    }
+
+    @GetMapping("/meat_Products")
+    public String meat_Products(Model model) {
+
+        List<product> allProducts = productService.findAll();
+
+        List<product> meatProducts = allProducts.stream()
+                .filter(p -> "Meat products".equalsIgnoreCase(p.getProductType().getName()))
+                .toList();
+
+        model.addAttribute("meatProducts", meatProducts);
+
+        return "meat_Products";
     }
 
     @GetMapping("/viewNewProductAddition")
@@ -75,21 +122,12 @@ public class productController {
         }
 
         product.setImages(images);
-        productService.save(product); // Assumes this cascades to images
-
-        return "redirect:/list"; // or your products list
-    }
-
-
-
-    /*
-    @PostMapping("/save")
-    public String saveProduct(@ModelAttribute("product") product product) {
-
         productService.save(product);
 
         return "redirect:/list";
-    }*/
+    }
+
+
 
     @PostMapping("/select/{id}")
     public String selectProduct(@PathVariable Integer id) {
