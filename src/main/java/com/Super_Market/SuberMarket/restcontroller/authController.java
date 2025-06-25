@@ -51,6 +51,4 @@ public class authController {
         return "redirect:/showMyLoginPage?registration=success";
     }
 
-
-
 }

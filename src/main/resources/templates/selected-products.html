@@ -4,93 +4,100 @@
     <meta charset="UTF-8">
     <title>Selected Products</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="/css/selected-products.css">
 </head>
 <body>
 
-<div class="container">
+<div class="container py-4">
 
+    <!-- Title -->
+    <div class="text-center">
+        <h2><i>Your Selected Products</i></h2>
+    </div>
 
-    <section style="padding: 20px 0;">
-        <div style="text-align: center;">
-            <i><h2>Your Selected Products</h2></i>
-        </div>
+    <!-- If no products -->
+    <div th:if="${#lists.isEmpty(products)}" class="alert alert-info text-center">
+        <p>You haven't selected any products yet.
+            <a th:href="@{/list}" class="alert-link">Go to product list</a> to select products.
+        </p>
+    </div>
 
-    <!-- Show message if no products are selected -->
-    <div th:if="${#lists.isEmpty(products)}" class="row">
-        <div class="col">
-            <div class="alert alert-info">
-                <p>You haven't selected any products yet. <a th:href="@{/list}" class="alert-link">Go to product list</a> to select products.</p>
+    <!-- If products exist -->
+    <div th:if="${not #lists.isEmpty(products)}">
+        <table class="table table-bordered table-striped mt-4">
+            <thead class="table-dark">
+            <tr>
+                <th>Product Image</th>
+                <th>Product Name</th>
+                <th>Product Type</th>
+                <th>Expiry Date</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="tempProduct, stat : ${products}">
+                <td>
+                    <img th:src="@{${tempProduct.ProductImage}}" alt="Product Image" width="150" height="100">
+                </td>
+                <td th:text="${tempProduct.productName}"></td>
+                <td th:text="${tempProduct.ProductType.name}"></td>
+                <td th:text="${tempProduct.ExpriryData}"></td>
+                <td th:text="${#numbers.formatCurrency(tempProduct.ProductPrice)}"></td>
+                <td>
+                    <span class="badge bg-primary" th:text="${stat.count}"></span>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr class="table-info">
+                <td colspan="4" class="text-end fw-bold">Total Price:</td>
+                <td th:text="${#numbers.formatCurrency(totalPrice)}" class="fw-bold"></td>
+                <td></td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <!-- Actions Section -->
+    <div class="row mt-5">
+        <div class="col d-flex justify-content-between align-items-center flex-wrap">
+
+            <!-- Dropdown Menu -->
+            <div class="dropdown">
+                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    Select Products
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" th:href="@{/list}">Continue Shopping</a></li>
+                    <li><a class="dropdown-item" th:href="@{/dairy_Products}">Selection of dairy product</a></li>
+                    <li><a class="dropdown-item" th:href="@{/oil_Products}">Selection of oil products</a></li>
+                    <li><a class="dropdown-item" th:href="@{/meat_Products}">Selection of meat products</a></li>
+                </ul>
             </div>
-        </div>
-    </div>
 
-    <!-- Show table only if products are selected -->
-    <div th:if="${not #lists.isEmpty(products)}" class="row">
-        <div class="col">
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
-                <tr>
-                    <th>Product Image</th>
-                    <th>Product Name</th>
-                    <th>Product Type</th>
-                    <th>Expiry Date</th>
-                    <th>Price</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <tr th:each="tempProduct, stat : ${products}">
-                    <td>
-                        <img th:src="@{${tempProduct.ProductImage}}" alt="Product Image" style="width:150px; height:100px;" />
-                    </td>
-                    <td th:text="${tempProduct.productName}" />
-                    <td th:text="${tempProduct.ProductType}" />
-                    <td th:text="${tempProduct.ExpriryData}" />
-                    <td th:text="${#numbers.formatCurrency(tempProduct.ProductPrice)}" />
-                    <td>
-                        <!-- You could add remove button here if needed -->
-                        <span class="badge bg-primary" th:text="${stat.count}"></span>
-                    </td>
-                </tr>
-                </tbody>
-
-                <!-- Total price row -->
-                <tfoot>
-                <tr class="table-info">
-                    <td colspan="4" class="text-end fw-bold">Total Price:</td>
-                    <td th:text="${#numbers.formatCurrency(totalPrice)}" class="fw-bold" />
-                    <td></td>
-                </tr>
-                </tfoot>
-            </table>
-        </div>
-    </div>
-    </section>
-
-    <!-- Action buttons -->
-    <div class="row mt-4">
-        <div class="col d-flex justify-content-between">
-            <a th:href="@{/list}" class="btn btn-outline-primary">
-                Continue Shopping
-            </a>
-
-            <div th:if="${not #lists.isEmpty(products)}">
-
-                <form th:action="@{/clear-selection}" method="post" style="display: inline-block;">
-                    <button type="submit" class="btn btn-outline-danger me-2">Clear Cart</button>
+            <!-- Cart Actions -->
+            <div th:if="${not #lists.isEmpty(products)}" class="action-buttons mt-3 mt-md-0">
+                <form th:action="@{/clear-selection}" method="post">
+                    <button type="submit" class="btn btn-outline-danger">Clear Cart</button>
                 </form>
-
-                <a th:href="@{/checkout}" class="btn btn-success">
-                    invoice
-                </a>
+                <a th:href="@{/checkout}" class="btn btn-success">Invoice</a>
             </div>
+
         </div>
     </div>
+
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<!-- Bootstrap 5 JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
 </body>
 </html>

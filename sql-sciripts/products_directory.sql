@@ -5,6 +5,8 @@ DROP TABLE IF EXISTS `authorities`;
 DROP TABLE IF EXISTS `users`;
 DROP TABLE IF EXISTS `product_images`;
 DROP TABLE IF EXISTS `product`;
+DROP TABLE IF EXISTS `product_type`;
+
 
 CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
@@ -14,7 +16,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `users` VALUES 
-('MayarOsama','{bcrypt}$2y$10$CRV/r/Hx8NCPL15VNUMAEu3dIxuB/.xQTmaGK613Uza7Kia814OUa',1);
+('Mayar_osama','$2y$10$agnI6MK.CVuGuQZZ.AwChuZk9iWLsSWvtlN.9CmF5Cl1iewdPI6TW',1);
 
 CREATE TABLE `authorities` (
   `username` varchar(50) NOT NULL,
@@ -24,43 +26,57 @@ CREATE TABLE `authorities` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `authorities` VALUES 
-('MayarOsama','ROLE_EMPLOYEE'),
-('MayarOsama','ROLE_MANAGER'),
-('MayarOsama','ROLE_ADMIN');
+('Mayar_osama','ROLE_EMPLOYEE'),
+('Mayar_osama','ROLE_MANAGER'),
+('Mayar_osama','ROLE_ADMIN');
+
+CREATE TABLE product_type (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+INSERT INTO product_type (name) VALUES
+('Dairy products'),
+('Oil products'),
+('Meat products');
+
 
 CREATE TABLE `product` (
   id INT NOT NULL AUTO_INCREMENT,
   Product_image VARCHAR(255) DEFAULT NULL,
   Product_name VARCHAR(100),
-  Product_type VARCHAR(100),
+  Product_type_id INT,
   expiry_data VARCHAR(20),
   Product_price DOUBLE,
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  FOREIGN KEY (product_type_id) REFERENCES product_type(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `product` (id, Product_image, Product_name, Product_type, expiry_data, Product_price) VALUES
-(1, 'http://localhost:8080/images/Almarai_Milk.jpeg', 'Almarai Milk', 'Dairy products', '2024-12-10', 80),
-(2, 'http://localhost:8080/images/Roman_cheese.jpeg', 'Roman cheese', 'Dairy products', '2024-08-05', 45),
-(3, 'http://localhost:8080/images/Costa_Blackcurrant_Juice.jpg', 'Costa Blackcurrant Juice', 'Dairy products', '2024-05-03', 75),
-(4, 'http://localhost:8080/images/Abourland_milk.jpeg', 'Milk', 'Dairy products', '2024-06-07', 98),
-(5, 'http://localhost:8080/images/cheddar_cheese.jpeg', 'cheddar cheese', 'Dairy products', '2024-06-07', 98),
-(6, 'http://localhost:8080/images/bikhayrih_milk.jpeg','bikhayrih milk', 'Dairy products', '2024-06-07', 98),
-(7, 'http://localhost:8080/images/Domty_Juice.jpeg', 'Domty Juice', 'Dairy products', '2024-06-07', 98),
-(8, 'http://localhost:8080/images/Romano_cheese_Abourland.jpeg', 'Romano cheese Abourland', 'Dairy products', '2024-06-07', 98),
-(9, 'http://localhost:8080/images/Milk_Package.jpeg', 'Milk', 'Dairy products', '2024-06-07', 98),
-(10, 'http://localhost:8080/images/Sun-top_juice.jpeg', 'Sun top juice', 'Dairy products', '2024-08-05', 23),
-(11, 'http://localhost:8080/images/Hala_sunflower_oil.jpg', 'Hala sunflower oil', 'Oil products', '2024-05-03', 75),
-(12, 'http://localhost:8080/images/Afia_sunflower_oil.jpg', 'Afia sunflower oil', 'Oil products', '2024-08-06', 100),
-(13, 'http://localhost:8080/images/Buy_Sunny_sunflower_oil.jpg', 'Buy Sunny sunflower oil', 'Oil products', '2024-09-08', 150),
-(14, 'http://localhost:8080/images/Crystal_sunflower_oil.jpg', 'Crystal sunflower oil', 'Oil products', '2024-02-10', 50),
-(15, 'http://localhost:8080/images/royal_sunflower_oil.jpg', 'royal sunflower oil', 'Oil products', '2024-05-23', 200),
-(16, 'http://localhost:8080/images/Crystal_Corn_Oil.jpg', 'Crystal Corn Oil', 'Oil products', '2024-03-12', 90),
-(17, 'http://localhost:8080/images/Al_Khazna_meat_product.jpeg', 'Al Khazna', 'Meat products', '2025-07-12', 200),
-(18, 'http://localhost:8080/images/Alyoum_Meat_products.jpeg', 'Alyoum', 'Meat products', '2025-09-05', 180),
-(19, 'http://localhost:8080/images/chicken_sausage_meat_products.jpg', 'chicken sausage', 'Meat products', '2025-10-08', 100),
-(20, 'http://localhost:8080/images/Dane_Meat_meat_products.jpg', 'Dane Meat', 'Meat products', '2025-02-10', 155),
-(21, 'http://localhost:8080/images/Meat_kebab_meat_products.jpg', 'Meat kebab', 'Meat products', '2025-06-12', 120),
-(22, 'http://localhost:8080/images/tender_chicken_breasts_meat_products.png', 'tender chicken breasts', 'Meat products', '2025-10-09', 160);
+INSERT INTO product (id, Product_image, Product_name, Product_type_id, expiry_data, Product_price) VALUES
+(1, 'http://localhost:8080/images/Almarai_Milk.jpeg', 'Almarai Milk', 1, '2024-12-10', 80),
+(2, 'http://localhost:8080/images/Roman_cheese.jpeg', 'Roman cheese', 1, '2024-08-05', 45),
+(3, 'http://localhost:8080/images/Costa_Blackcurrant_Juice.jpg', 'Costa Blackcurrant Juice', 1, '2024-05-03', 75),
+(4, 'http://localhost:8080/images/Abourland_milk.jpeg', 'Milk', 1, '2024-06-07', 98),
+(5, 'http://localhost:8080/images/cheddar_cheese.jpeg', 'cheddar cheese', 1, '2024-06-07', 98),
+(6, 'http://localhost:8080/images/bikhayrih_milk.jpeg', 'bikhayrih milk', 1, '2024-06-07', 98),
+(7, 'http://localhost:8080/images/Domty_Juice.jpeg', 'Domty Juice', 1, '2024-06-07', 98),
+(8, 'http://localhost:8080/images/Romano_cheese_Abourland.jpeg', 'Romano cheese Abourland', 1, '2024-06-07', 98),
+(9, 'http://localhost:8080/images/Milk_Package.jpeg', 'Milk', 1, '2024-06-07', 98),
+(10, 'http://localhost:8080/images/Sun-top_juice.jpeg', 'Sun top juice', 1, '2024-08-05', 23),
+(11, 'http://localhost:8080/images/Hala_sunflower_oil.jpg', 'Hala sunflower oil', 2, '2024-05-03', 75),
+(12, 'http://localhost:8080/images/Afia_sunflower_oil.jpg', 'Afia sunflower oil', 2, '2024-08-06', 100),
+(13, 'http://localhost:8080/images/Buy_Sunny_sunflower_oil.jpg', 'Buy Sunny sunflower oil', 2, '2024-09-08', 150),
+(14, 'http://localhost:8080/images/Crystal_sunflower_oil.jpg', 'Crystal sunflower oil', 2, '2024-02-10', 50),
+(15, 'http://localhost:8080/images/royal_sunflower_oil.jpg', 'royal sunflower oil', 2, '2024-05-23', 200),
+(16, 'http://localhost:8080/images/Crystal_Corn_Oil.jpg', 'Crystal Corn Oil', 2, '2024-03-12', 90),
+(17, 'http://localhost:8080/images/Al_Khazna_meat_product.jpeg', 'Al Khazna', 3, '2025-07-12', 200),
+(18, 'http://localhost:8080/images/Alyoum_Meat_products.jpeg', 'Alyoum', 3, '2025-09-05', 180),
+(19, 'http://localhost:8080/images/chicken_sausage_meat_products.jpg', 'chicken sausage', 3, '2025-10-08', 100),
+(20, 'http://localhost:8080/images/Dane_Meat_meat_products.jpg', 'Dane Meat', 3, '2025-02-10', 155),
+(21, 'http://localhost:8080/images/Meat_kebab_meat_products.jpg', 'Meat kebab', 3, '2025-06-12', 120),
+(22, 'http://localhost:8080/images/tender_chicken_breasts_meat_products.png', 'tender chicken breasts', 3, '2025-10-09', 160);
+
 
 CREATE TABLE `product_images` (
   id INT AUTO_INCREMENT PRIMARY KEY,
