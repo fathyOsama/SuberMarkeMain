@@ -5,6 +5,37 @@
             /* overflow: hidden; */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        .parent {
+             background-color: #eee;
+         }
+
+         .container {
+             padding-left: 15px;
+             padding-right: 15px;
+             margin-left: auto;
+             margin-right: auto;
+         }
+
+         /* Small */
+         @media (min-width: 768px) {
+             .container {
+                 width: 750px;
+             }
+         }
+
+         /* Medium */
+         @media (min-width: 992px) {
+             .container {
+                 width: 970px;
+             }
+         }
+
+         /* Large */
+         @media (min-width: 1200px) {
+             .container {
+                 width: 1170px;
+             }
+         }
 
         .product-card {
             transition: all 0.3s ease;
@@ -113,3 +144,29 @@
             background: #f8f9fa;
             border-radius: 12px;
         }
+        .product-links {
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            max-width: 400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+                }
+
+                .product-links a {
+                    text-align: center;
+                    padding: 12px;
+                    font-size: 16px;
+                    font-weight: 500;
+                    background-color: #007bff;
+                    color: #fff;
+                    border-radius: 6px;
+                    text-decoration: none;
+                    transition: background-color 0.3s ease;
+                }
+
+                .product-links a:hover {
+                    background-color: #0056b3;
+                }

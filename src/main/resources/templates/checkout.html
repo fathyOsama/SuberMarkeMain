@@ -22,7 +22,7 @@
                 <li class="list-group-item d-flex justify-content-between lh-sm" th:each="item : ${products}">
                     <div>
                         <h6 class="my-0" th:text="${item.productName}"></h6>
-                        <small class="text-muted" th:text="${item.ProductType}"></small>
+                        <small class="text-muted" th:text="${item.ProductType.name}"></small>
                     </div>
                     <span class="text-muted" th:text="${#numbers.formatCurrency(item.ProductPrice)}"></span>
                 </li>
