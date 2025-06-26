@@ -12,9 +12,10 @@
 </head>
 <body>
 <div class="container">
-    <h2>Register New User</h2>
 
     <div id="loginbox">
+        <h2>Register New User</h2>
+
         <form th:action="@{/processRegistration}" th:object="${user}" method="POST">
             <div class="form-group">
                 <label for="username">Username</label>
